@@ -22,6 +22,9 @@ public abstract class Klant {
         klanten.add(this);
     }
 
+    public abstract Korting createKorting();
+    public abstract WeekendWerk createWeekendWerk();
+
     public Klant(){}
 
     public Tarief getTarief() {
