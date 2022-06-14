@@ -86,13 +86,20 @@ public class Factuur implements BerekenTarief, PrintFacturen{
         return total;
     }
 
+    public void verifieeëren(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Wat is uw naam?");
+        String naam = sc.nextLine();
+        System.out.println("Wat is uw telefoonnummer?");
+        String nummer = sc.nextLine();
+        for (int i = 0; i < Klant.getKlanten().size(); i++) {
+            if(){}
+        }
+    }
+
     public void factuurMaken() {
         Scanner scanner = new Scanner(System.in);
         boolean unknown = true;
-        ProjectTarief projectTarief = null;
-        WerkTarief werkTarief = null;
-        KlantWerk klantWerk = null;
-        KlantProject projectKlant = null;
         System.out.println("Wat is uw naam?");
         String inlogNaam = scanner.nextLine();
         System.out.println("Wat is uw telefoonnummer?");

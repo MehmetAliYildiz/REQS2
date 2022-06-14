@@ -1,14 +1,14 @@
 package com.company;
 
-public class GeenManufacturer extends ExtraKlantEigenschappen{
+public class GeenManufacturer extends Company{
 
     @Override
-    public Korting createKorting() {
-        return new GeenKorting();
+    public Korting createKorting(String s) {
+        return new GeenKorting("geen");
     }
 
     @Override
-    public WeekendWerk createWeekendWerk() {
-        return new GeenWeekendWerk();
+    public WeekendWerk createWeekendWerk(String s) {
+        return new GeenWeekendWerk("geen");
     }
 }

@@ -56,5 +56,14 @@ public class Main {
                 System.out.println("________________");
             }
         } while (nogEenKeer);
+//        Company welCompany = new WelManufacturer();
+//        Korting welKorting = welCompany.createKorting("");
+//        WeekendWerk welWeekendWerk = welCompany.createWeekendWerk("");
+//        System.out.println(welCompany.createKorting(""));
+//        System.out.println(welCompany.createWeekendWerk(""));
+//
+//        Company geenCompany = new GeenManufacturer();
+//        Korting geenKorting = geenCompany.createKorting("");
+//        System.out.println(geenCompany.createKorting(""));
     }
 }

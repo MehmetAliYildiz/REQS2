@@ -1,13 +1,18 @@
 package com.company;
 
-public class WelManufacturer extends ExtraKlantEigenschappen{
-    @Override
-    public Korting createKorting() {
-        return new WelKorting();
+public class WelManufacturer extends Company{
+
+    public WelManufacturer() {
     }
 
     @Override
-    public WeekendWerk createWeekendWerk() {
-        return new WelWeekendWerk();
+    public Korting createKorting(String s) {
+        return new WelKorting("wel");
     }
+
+    @Override
+    public WeekendWerk createWeekendWerk(String s) {
+        return new WelWeekendWerk("wel");
+    }
+
 }
