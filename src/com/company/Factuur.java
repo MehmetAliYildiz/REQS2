@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Factuur implements BerekenTarief, PrintFacturen {
+public class Factuur extends Klant implements BerekenTarief, PrintFacturen {
     private String kvkNummer;
     private int btwBedrag;
     private String datum;
@@ -14,15 +14,6 @@ public class Factuur implements BerekenTarief, PrintFacturen {
 
     public Factuur(Klant klant, String kvkNummer, int btwBedrag, String datum, int factuurNummer, int urenWerken) {
         this.klant = klant;
-        this.kvkNummer = kvkNummer;
-        this.btwBedrag = btwBedrag;
-        this.datum = datum;
-        this.factuurNummer = factuurNummer;
-        this.urenWerken = urenWerken;
-        factuurs.add(this);
-    }
-
-    public Factuur(String kvkNummer, int btwBedrag, String datum, int factuurNummer, int urenWerken) {
         this.kvkNummer = kvkNummer;
         this.btwBedrag = btwBedrag;
         this.datum = datum;
@@ -80,7 +71,7 @@ public class Factuur implements BerekenTarief, PrintFacturen {
         double total = 0;
         for (int i = 0; i < Klant.getKlanten().size(); i++) {
             for (int y = 0; y < Factuur.getFactuurs().size(); y++) {
-                total = Klant.getKlanten().get(i).getTarief().getTarief() * Factuur.getFactuurs().get(y).getUrenWerken();
+                    total = Klant.getKlanten().get(i).getTarief().getTarief() * Factuur.getFactuurs().get(y).getUrenWerken();
             }
         }
         return total;

@@ -11,8 +11,8 @@ public class Main {
         boolean nogEenKeer = true;
         Menu menu = new Menu();
         Factuur factuur = new Factuur();
-        Klant klant = new Klant();
-
+        WerkKlant werkKlant = new WerkKlant();
+        ProjectKlant projectKlant = new ProjectKlant();
         do {
             try {
                 Scanner scanner = new Scanner(System.in);
@@ -25,7 +25,8 @@ public class Main {
                 System.out.println("Voer een commandnummer in");
                 int commandnummer = scanner.nextInt();
                 if (commandnummer == 1) {
-                    klant.alleKlanten();
+                    projectKlant.alleKlanten();
+                    werkKlant.alleKlanten();
                 } else if (commandnummer == 2) {
                     factuur.alleFacturen();
                 } else if (commandnummer == 3) {
@@ -33,10 +34,10 @@ public class Main {
                     scanner.nextLine();
                     String keuze = scanner.nextLine();
                     if (keuze.equals("Werk")) {
-                        klant.werkKlantAanmaken();
+                        werkKlant.werkKlantAanmaken();
                     }
                     else if (keuze.equals("Project")) {
-                        klant.projectKlantAanmaken();
+                        projectKlant.projectKlantAanmaken();
                     } else {
                         System.out.println("Deze keuze bestaat niet");
                     }
