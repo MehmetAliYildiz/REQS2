@@ -93,7 +93,7 @@ public class Factuur implements BerekenTarief, PrintFacturen{
         System.out.println("Wat is uw telefoonnummer?");
         String nummer = sc.nextLine();
         for (int i = 0; i < Klant.getKlanten().size(); i++) {
-            if(){}
+            
         }
     }
 
