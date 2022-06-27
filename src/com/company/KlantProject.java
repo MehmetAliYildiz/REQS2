@@ -10,15 +10,15 @@ public class KlantProject extends Klant{
         this.klantProject = "KlantProject";
     }
 
-    @Override
-    public Korting createKorting() {
-        return null;
-    }
-
-    @Override
-    public WeekendWerk createWeekendWerk() {
-        return null;
-    }
+//    @Override
+//    public Korting createKorting() {
+//        return null;
+//    }
+//
+//    @Override
+//    public WeekendWerk createWeekendWerk() {
+//        return null;
+//    }
 
     public KlantProject() {}
 

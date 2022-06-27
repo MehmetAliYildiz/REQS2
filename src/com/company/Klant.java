@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Klant {
+public class Klant {
     private String naam;
     private String achternaam;
     private String telefoonNm;
@@ -22,8 +22,8 @@ public abstract class Klant {
         klanten.add(this);
     }
 
-    public abstract Korting createKorting();
-    public abstract WeekendWerk createWeekendWerk();
+//    public abstract Korting createKorting();
+//    public abstract WeekendWerk createWeekendWerk();
 
     public Klant(){}
 
