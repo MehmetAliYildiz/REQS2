@@ -21,11 +21,14 @@ public class Klant {
         this.weekendWerk = weekendWerk;
         klanten.add(this);
     }
-
-//    public abstract Korting createKorting();
-//    public abstract WeekendWerk createWeekendWerk();
-
     public Klant(){}
+
+    public void projectKlantAanmaken(){}
+
+    public void werkKlantAanmaken(){}
+
+    public void printKlant(){}
+
 
     public Tarief getTarief() {
         return tarief;
