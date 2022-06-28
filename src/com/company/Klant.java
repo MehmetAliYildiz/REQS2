@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Klant {
+public abstract class Klant {
     private String naam;
     private String achternaam;
     private String telefoonNm;
@@ -23,12 +23,17 @@ public class Klant {
     }
     public Klant(){}
 
-    public void projectKlantAanmaken(){}
+    public abstract void klantAanmaken();
 
-    public void werkKlantAanmaken(){}
+    public abstract void printKlant();
 
-    public void printKlant(){}
+    public abstract void notifyKlant();
 
+    final void makeKlant(){
+        klantAanmaken();
+        printKlant();
+        notifyKlant();
+    }
 
     public Tarief getTarief() {
         return tarief;

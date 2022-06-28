@@ -1,7 +1,5 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,11 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
         boolean nogEenKeer = true;
-        Menu menu = new Menu();
         Factuur factuur = new Factuur();
         KlantProject klantProject = new KlantProject();
         KlantWerk klantWerk = new KlantWerk();
-
         do {
             try {
                 Scanner scanner = new Scanner(System.in);
@@ -35,10 +31,10 @@ public class Main {
                     scanner.nextLine();
                     String keuze = scanner.nextLine();
                     if (keuze.equals("Werk")) {
-                        klantWerk.werkKlantAanmaken();
+                        klantWerk.makeKlant();
                     }
                     else if (keuze.equals("Project")) {
-                        klantProject.projectKlantAanmaken();
+                        klantProject.makeKlant();
                     } else {
                         System.out.println("Deze keuze bestaat niet");
                     }
@@ -56,14 +52,43 @@ public class Main {
                 System.out.println("________________");
             }
         } while (nogEenKeer);
-//        Company welCompany = new WelManufacturer();
-//        Korting welKorting = welCompany.createKorting("");
-//        WeekendWerk welWeekendWerk = welCompany.createWeekendWerk("");
-//        System.out.println(welCompany.createKorting(""));
-//        System.out.println(welCompany.createWeekendWerk(""));
-//
-//        Company geenCompany = new GeenManufacturer();
-//        Korting geenKorting = geenCompany.createKorting("");
-//        System.out.println(geenCompany.createKorting(""));
     }
 }
+
+
+
+
+
+//                int paneel = scanner.nextInt();
+////                switch (paneel){
+////                    case 1:
+////                        klantWerk.alleKlanten();
+////                        klantProject.alleKlanten();
+////                        break;
+////                    case 2:
+////                        factuur.alleFacturen();
+////                        break;
+////                    case 3:
+////                        System.out.println("wat voor klant bent u. kies uit: Werk/Project");
+////                        scanner.nextLine();
+////                        String keuze = scanner.nextLine();
+////                        if (keuze.equals("Werk")) {
+////                            klantWerk.makeKlant();
+////                        }
+////                        else if (keuze.equals("Project")) {
+////                            klantProject.makeKlant();
+////                        } else {
+////                            System.out.println("Deze keuze bestaat niet");
+////                        }
+////                        break;
+////                    case 4:
+////                        factuur.factuurMaken();
+////                        break;
+////                    case 5:
+////                        System.out.println("Het systeem wordt afgesloten");
+////                        nogEenKeer = false;
+////                        break;
+////                    default:
+////                        System.out.println("Command ongeldig");
+////                        System.out.println("________________");
+////                }

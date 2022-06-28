@@ -16,7 +16,8 @@ public class KlantProject extends Klant{
         return klantProject;
     }
 
-    public void projectKlantAanmaken() {
+    @Override
+    public void klantAanmaken() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Wat is uw naam");
         String naam = sc.nextLine();
@@ -34,12 +35,31 @@ public class KlantProject extends Klant{
         System.out.println("Wat voor project is het?");
         String project = sc.nextLine();
         Tarief tarief1 = new ProjectTarief(tarief, project);
-        Klant klant1 = new KlantProject("KlantProject", tarief1, naam, achternaam, telefoonNm, kortingsPas, weekendWerkend);
-        System.out.println("Klant " + naam +" "+ achternaam + " is aangemaakt " + telefoonNm);
-        System.out.println("Verdient: "+ tarief1.getVerdient());
-        System.out.println("Korting: " + kortingsPas);
-        System.out.println("Werkt in weekend: " + weekendWerkend);
-        System.out.println("Zijn tarief per uur is: "+ tarief);
+        Klant klant1 = new KlantProject("Project", tarief1, naam, achternaam, telefoonNm, kortingsPas, weekendWerkend);
+    }
+
+    public void existingKlant() {
+        Tarief tarief1 = new ProjectTarief(21, "Gebouwen bouwen");
+        Klant klant1 = new KlantProject("Project",tarief1,"Mehmet", "Yildiz", "0685416936", "j", "j");
+        klanten.add(klant1);
+    }
+
+    @Override
+    public void printKlant() {
+        int i = 0;
+        System.out.println("Klant " + klanten.get(i).getNaam() +" "+ klanten.get(i).getAchternaam() + " is aangemaakt ");
+        System.out.println("Telefoonnummer: "+ klanten.get(i).getTelefoonNm());
+        System.out.println("Verdient: "+ klanten.get(i).getTarief());
+        System.out.println("Korting: " + klanten.get(i).getKorting());
+        System.out.println("Werkt in weekend: " + klanten.get(i).getWeekendWerk());
+        i = i +1;
+    }
+
+    @Override
+    public void notifyKlant() {
+        int i = 0;
+        System.out.println("Welcome: " + klanten.get(i).getNaam() + " To our app!");
+        i = i +1;
     }
 
     public void alleKlanten() {

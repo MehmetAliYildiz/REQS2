@@ -3,10 +3,11 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Factuur implements BerekenTarief, PrintFacturen{
+public class Factuur extends FactuurManager implements BerekenTarief, PrintFacturen, FactuurObserver {
     private String kvkNummer;
     private int btwBedrag;
     private String datum;
+    private String bestelUpdate;
     private Klant klant;
     private int factuurNummer;
     private int urenWerken;
@@ -14,15 +15,6 @@ public class Factuur implements BerekenTarief, PrintFacturen{
 
     public Factuur(Klant klant, String kvkNummer, int btwBedrag, String datum, int factuurNummer, int urenWerken) {
         this.klant = klant;
-        this.kvkNummer = kvkNummer;
-        this.btwBedrag = btwBedrag;
-        this.datum = datum;
-        this.factuurNummer = factuurNummer;
-        this.urenWerken = urenWerken;
-        factuurs.add(this);
-    }
-
-    public Factuur(String kvkNummer, int btwBedrag, String datum, int factuurNummer, int urenWerken) {
         this.kvkNummer = kvkNummer;
         this.btwBedrag = btwBedrag;
         this.datum = datum;
@@ -86,89 +78,55 @@ public class Factuur implements BerekenTarief, PrintFacturen{
         return total;
     }
 
-    public void verifieeëren(){
+    public void factuurMaken(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Wat is uw naam?");
         String naam = sc.nextLine();
         System.out.println("Wat is uw telefoonnummer?");
         String nummer = sc.nextLine();
         for (int i = 0; i < Klant.getKlanten().size(); i++) {
-            
+            if(naam.equals(Klant.getKlanten().get(i).getNaam()) && (nummer.equals(Klant.getKlanten().get(i).getTelefoonNm()))){
+                System.out.println("U kunt nu een factuur maken.");
+                System.out.println("Wat is uw kvk nummer?");
+                sc.nextLine();
+                String kvkNummer = sc.nextLine();
+                System.out.println("Wat is de BTW bedrag?");
+                int btwBedrag = sc.nextInt();
+                sc.nextLine();
+                System.out.println("Wat is de datum?");
+                String datum = sc.nextLine();
+                System.out.println("Wat is de factuur nummer?");
+                int factuurNummer = sc.nextInt();
+                System.out.println("Hoe lang heeft u gewerkt?");
+                int urenWerken = sc.nextInt();
+                Factuur factuur1 = new Factuur(Klant.getKlanten().get(i), kvkNummer, btwBedrag, datum, factuurNummer, urenWerken);
+                System.out.println("Klant: "+ Klant.getKlanten().get(i).getNaam()+ " "+ Klant.getKlanten().get(i).getTarief());
+                printEenFactuur();
+                FactuurManager factuurManager = new FactuurManager();
+                factuurManager.setfactuurs();
+                factuurManager.setBestelUpdate("Nieuwe Factuur!");
+            }
+            break;
         }
     }
 
-    public void factuurMaken() {
-        Scanner scanner = new Scanner(System.in);
-        boolean unknown = true;
-        System.out.println("Wat is uw naam?");
-        String inlogNaam = scanner.nextLine();
-        System.out.println("Wat is uw telefoonnummer?");
-        String telefoonnummer = scanner.nextLine();
-        for (int i = 0; i < Klant.getKlanten().size(); i++) {
-            if (inlogNaam.equals(Klant.getKlanten().get(i).getNaam()) && (telefoonnummer.equals(Klant.getKlanten().get(i).getTelefoonNm()))) {
-                unknown = false;
-                System.out.println("U kunt nu een factuur maken");
-                System.out.println("Wat voor factuur wilt u maken?" +
-                        " 1: Project Factuur 2: Werk Factuur Voer nummer in");
-                int watVoorFactuur = scanner.nextInt();
-                if (watVoorFactuur == 1) {
-                    System.out.println("Wat is uw kvk nummer?");
-                    scanner.nextLine();
-                    String kvkNummer = scanner.nextLine();
-                    System.out.println("Wat is de BTW bedrag?");
-                    int btwBedrag = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Wat is de datum?");
-                    String datum = scanner.nextLine();
-                    System.out.println("Wat is de factuur nummer?");
-                    int factuurNummer = scanner.nextInt();
-                    System.out.println("Hoe lang heeft u gewerkt?");
-                    int urenWerken = scanner.nextInt();
-                    Factuur factuur1 = new Factuur(Klant.getKlanten().get(i), kvkNummer, btwBedrag, datum, factuurNummer, urenWerken);
-                    for (int y = 0; y < Factuur.getFactuurs().size(); y++) {
-                        System.out.println("Klant: "+ Klant.getKlanten().get(i).getNaam()+ " "+ Klant.getKlanten().get(i).getTarief());
-                        System.out.println("kvk nummer: " + Factuur.getFactuurs().get(y).getKvkNummer());
-                        System.out.println("Datum: " + Factuur.getFactuurs().get(y).getDatum());
-                        System.out.println("Factuur Nummer: " + Factuur.getFactuurs().get(y).getFactuurNummer());
-                        System.out.println("BTW bedrag: " + Factuur.getFactuurs().get(y).getBtwBedrag()
-                                + "    " + "Uren gewerkt: " + Factuur.getFactuurs().get(y).getUrenWerken());
-                        System.out.println("Verdienst: " + Klant.getKlanten().get(i).getTarief().getVerdient());
-                        System.out.println("Het totaal bedrag exclusief BTW is: "+ getBedrag());
-//                        System.out.println("Het totaal bedrag inxclusief BTW is: "+ getBTWBedrag());
-                    }
-                } else if (watVoorFactuur == 2) {
-                    System.out.println("Wat is uw kvk nummer?");
-                    scanner.nextLine();
-                    String kvkNummer = scanner.nextLine();
-                    System.out.println("Wat is de BTW bedrag?");
-                    int btwBedrag = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Wat is de datum?");
-                    String datum = scanner.nextLine();
-                    System.out.println("Wat is de factuur nummer?");
-                    int factuurNummer = scanner.nextInt();
-                    System.out.println("Hoe lang heeft u gewerkt?");
-                    int urenWerken = scanner.nextInt();
-                    Factuur factuur1 = new Factuur(Klant.getKlanten().get(i), kvkNummer, btwBedrag, datum, factuurNummer, urenWerken);
-                    for (int y = 0; y < Factuur.getFactuurs().size(); y++) {
-                        System.out.println("Klant: "+ Klant.getKlanten().get(i).getNaam()+ " "+ Klant.getKlanten().get(i).getTarief());
-                        System.out.println("kvk nummer: " + Factuur.getFactuurs().get(y).getKvkNummer());
-                        System.out.println("Datum: " + Factuur.getFactuurs().get(y).getDatum());
-                        System.out.println("Factuur Nummer: " + Factuur.getFactuurs().get(y).getFactuurNummer());
-                        System.out.println("------------------------------------------------------------");
-                        System.out.println("BTW bedrag: " + Factuur.getFactuurs().get(y).getBtwBedrag());
-                        System.out.println("Uren gewerkt: " + Factuur.getFactuurs().get(y).getUrenWerken());
-                        System.out.println("------------------------------------------------------------");
-                        System.out.println("Het totaal bedrag exclusief BTW is: "+ getBedrag());
-//                        System.out.println("Het totaal bedrag inxclusief BTW is: "+ getBTWBedrag());
-                    }
-                } else {
-                    System.out.println("Tarief bestaat niet");
-                }
-            }
+    public void printEenFactuur(){
+        for (int y = 0; y < Factuur.getFactuurs().size(); y++) {
+            System.out.println("kvk nummer: " + Factuur.getFactuurs().get(y).getKvkNummer());
+            System.out.println("Datum: " + Factuur.getFactuurs().get(y).getDatum());
+            System.out.println("Factuur Nummer: " + Factuur.getFactuurs().get(y).getFactuurNummer());
+            System.out.println("------------------------------------------------------------");
+            System.out.println("BTW bedrag: " + Factuur.getFactuurs().get(y).getBtwBedrag());
+            System.out.println("Uren gewerkt: " + Factuur.getFactuurs().get(y).getUrenWerken());
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Het totaal bedrag exclusief BTW is: "+ getBedrag());
         }
-        if (unknown) {
-            System.out.println("Ongeldige combinatie van naam en telefoon nummer!");
-        }
+    }
+
+    @Override
+    public void update(String bestelUpdate) {
+        this.bestelUpdate = bestelUpdate;
+        System.out.println("DashboardFactuur:"+ bestelUpdate);
+
     }
 }

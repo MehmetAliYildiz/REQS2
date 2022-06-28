@@ -28,8 +28,4 @@ public class WerkTarief extends Tarief{
         tariefs.add(tarief1);
         return tariefs;
     }
-    public static void main(String[] args) {
-        WerkTarief tarief1 = new WerkTarief(19, "Programmeren");
-        System.out.println(tarief1);
-    }
 }

@@ -1,12 +1,16 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Tarief {
     double tarief;
     String verdient;
+    public static ArrayList<Tarief> tariefs = new ArrayList<>();
 
     public Tarief(double tarief) {
         this.tarief = tarief;
         this.verdient = verdienstKlant();
+        tariefs.add(this);
     }
 
     public double getTarief() {
@@ -15,6 +19,10 @@ public class Tarief {
 
     public String getVerdient() {
         return verdient;
+    }
+
+    public static ArrayList<Tarief> getTariefs() {
+        return tariefs;
     }
 
     public String verdienstKlant() {
