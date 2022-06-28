@@ -5,12 +5,13 @@ import java.util.Scanner;
 public class KlantProject extends Klant{
     String klantProject;
 
-    public KlantProject(String klantProject, Tarief tarief, String naam, String achternaam, String telefoonNm, String korting, String weekendWerk) {
-        super(tarief, naam, achternaam, telefoonNm, korting, weekendWerk);
-        this.klantProject = "KlantProject";
+    public KlantProject(String klantProject, Tarief tarief, String naam, String achternaam, String telefoonNm, KlantEigenschap klantEigenschap) {
+        super(tarief, naam, achternaam, telefoonNm,klantEigenschap);
+        this.klantProject = klantProject;
     }
 
-    public KlantProject() {}
+    public KlantProject()
+    {}
 
     public String getKlantProject() {
         return klantProject;
@@ -25,34 +26,34 @@ public class KlantProject extends Klant{
         String achternaam = sc.nextLine();
         System.out.println("Wat is uw telefoonnummer");
         String telefoonNm = sc.nextLine();
-        System.out.println("Heeft u een kortings pas j/n?");
-        String kortingsPas = sc.nextLine();
-        System.out.println("Werkt u in de weekend j/n?");
-        String weekendWerkend = sc.nextLine();
+        System.out.println("Heeft u een kortings pas en werkt u in de weekend j/n?");
+        String eigenschap = sc.nextLine();
         System.out.println("Hoeveel verdient u per uur");
         double tarief = sc.nextDouble();
         sc.nextLine();
         System.out.println("Wat voor project is het?");
         String project = sc.nextLine();
+        KlantEigenschap klanteigenschap = null;
+        if (eigenschap.equals("j")) {
+            Wel wel = new Wel();
+            klanteigenschap = wel;
+        } else if(eigenschap.equals("n")){
+            Geen geen = new Geen();
+            klanteigenschap = geen;
+        }
         Tarief tarief1 = new ProjectTarief(tarief, project);
-        Klant klant1 = new KlantProject("Project", tarief1, naam, achternaam, telefoonNm, kortingsPas, weekendWerkend);
-    }
-
-    public void existingKlant() {
-        Tarief tarief1 = new ProjectTarief(21, "Gebouwen bouwen");
-        Klant klant1 = new KlantProject("Project",tarief1,"Mehmet", "Yildiz", "0685416936", "j", "j");
-        klanten.add(klant1);
+        Klant klant1 = new KlantProject("Project", tarief1, naam, achternaam, telefoonNm, klanteigenschap);
     }
 
     @Override
     public void printKlant() {
-        int i = 0;
+        for (int i = 0; i < klanten.size(); i++) {
         System.out.println("Klant " + klanten.get(i).getNaam() +" "+ klanten.get(i).getAchternaam() + " is aangemaakt ");
         System.out.println("Telefoonnummer: "+ klanten.get(i).getTelefoonNm());
-        System.out.println("Verdient: "+ klanten.get(i).getTarief());
-        System.out.println("Korting: " + klanten.get(i).getKorting());
-        System.out.println("Werkt in weekend: " + klanten.get(i).getWeekendWerk());
-        i = i +1;
+        System.out.println("Verdient: "+ klanten.get(i).getTarief().getVerdient());
+        System.out.println("Korting: " + klanten.get(i).getKlantEigenschap().getKorting());
+        System.out.println("Werkt in weekend: " + klanten.get(i).getKlantEigenschap().getWeekendWerk());
+        }
     }
 
     @Override

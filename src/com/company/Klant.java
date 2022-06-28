@@ -1,27 +1,37 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public abstract class Klant {
     private String naam;
     private String achternaam;
     private String telefoonNm;
     private Tarief tarief;
-    private String korting;
-    private String weekendWerk;
+//    private String korting;
+//    private String weekendWerk;
+    private KlantEigenschap klantEigenschap;
     public static ArrayList<Klant> klanten= new ArrayList<>();
 
-    public Klant(Tarief tarief, String naam, String achternaam, String telefoonNm, String korting, String weekendWerk) {
+    public Klant(Tarief tarief, String naam, String achternaam, String telefoonNm, KlantEigenschap klantEigenschap) {
         this.naam = naam;
         this.tarief = tarief;
         this.achternaam = achternaam;
         this.telefoonNm = telefoonNm;
-        this.korting = korting;
-        this.weekendWerk = weekendWerk;
+        this.klantEigenschap = klantEigenschap;
         klanten.add(this);
     }
+
     public Klant(){}
+
+    public KlantEigenschap getKlantEigenschap() {
+        return klantEigenschap;
+    }
+
+//    public Klant(KlantEigenschappenFactory klantEigenschappenFactory){
+//        this.korting = klantEigenschappenFactory.createKorting();
+//        this.weekendWerk = klantEigenschappenFactory.createWeekendWerk();
+//    }
+    public Klant(Tarief tarief, String naam, String achternaam, String telefoonNm, Korting korting, WeekendWerk weekendWerk){}
 
     public abstract void klantAanmaken();
 
@@ -53,13 +63,5 @@ public abstract class Klant {
 
     public static ArrayList<Klant> getKlanten() {
         return klanten;
-    }
-
-    public String getKorting() {
-        return korting;
-    }
-
-    public String getWeekendWerk() {
-        return weekendWerk;
     }
 }

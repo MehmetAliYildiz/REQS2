@@ -127,6 +127,5 @@ public class Factuur extends FactuurManager implements BerekenTarief, PrintFactu
     public void update(String bestelUpdate) {
         this.bestelUpdate = bestelUpdate;
         System.out.println("DashboardFactuur:"+ bestelUpdate);
-
     }
 }
