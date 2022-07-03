@@ -48,7 +48,7 @@ public class KlantProject extends Klant{
     @Override
     public void printKlant() {
         for (int i = 0; i < klanten.size(); i++) {
-        System.out.println("Klant " + klanten.get(i).getNaam() +" "+ klanten.get(i).getAchternaam() + " is aangemaakt ");
+        System.out.println("Klant " + getNaam() +" "+ klanten.get(i).getAchternaam() + " is aangemaakt ");
         System.out.println("Telefoonnummer: "+ klanten.get(i).getTelefoonNm());
         System.out.println("Verdient: "+ klanten.get(i).getTarief().getVerdient());
         System.out.println("Korting: " + klanten.get(i).getKlantEigenschap().getKorting());

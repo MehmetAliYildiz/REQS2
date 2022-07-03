@@ -27,12 +27,6 @@ public abstract class Klant {
         return klantEigenschap;
     }
 
-//    public Klant(KlantEigenschappenFactory klantEigenschappenFactory){
-//        this.korting = klantEigenschappenFactory.createKorting();
-//        this.weekendWerk = klantEigenschappenFactory.createWeekendWerk();
-//    }
-    public Klant(Tarief tarief, String naam, String achternaam, String telefoonNm, Korting korting, WeekendWerk weekendWerk){}
-
     public abstract void klantAanmaken();
 
     public abstract void printKlant();

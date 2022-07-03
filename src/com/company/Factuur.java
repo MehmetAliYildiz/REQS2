@@ -4,45 +4,33 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Factuur extends FactuurManager implements BerekenTarief, PrintFacturen, FactuurObserver {
-    private String kvkNummer;
-    private int btwBedrag;
     private String datum;
     private String bestelUpdate;
     private Klant klant;
-    private int factuurNummer;
     private int urenWerken;
+    private FactuurEigenschap factuurEigenschap;
     private static ArrayList<Factuur> factuurs = new ArrayList<>();
 
-    public Factuur(Klant klant, String kvkNummer, int btwBedrag, String datum, int factuurNummer, int urenWerken) {
+    public Factuur(Klant klant, String datum, int urenWerken, FactuurEigenschap factuurEigenschap) {
         this.klant = klant;
-        this.kvkNummer = kvkNummer;
-        this.btwBedrag = btwBedrag;
         this.datum = datum;
-        this.factuurNummer = factuurNummer;
         this.urenWerken = urenWerken;
+        this.factuurEigenschap = factuurEigenschap;
         factuurs.add(this);
     }
 
-    public Factuur() {}
-
-    public String getKvkNummer() {
-        return kvkNummer;
+    public FactuurEigenschap getFactuurEigenschap() {
+        return factuurEigenschap;
     }
+
+    public Factuur() {}
 
     public Klant getKlant() {
         return klant;
     }
 
-    public int getBtwBedrag() {
-        return btwBedrag;
-    }
-
     public String getDatum() {
         return datum;
-    }
-
-    public int getFactuurNummer() {
-        return factuurNummer;
     }
 
     public int getUrenWerken() {
@@ -58,10 +46,10 @@ public class Factuur extends FactuurManager implements BerekenTarief, PrintFactu
         for (int i = 0; i < Factuur.getFactuurs().size(); i++) {
             System.out.println("Naam: "+ Factuur.getFactuurs().get(i).getKlant().getNaam()+ " "
                     + Factuur.getFactuurs().get(i).getKlant().getAchternaam());
-            System.out.println("Kvk nummer: " + Factuur.getFactuurs().get(i).getKvkNummer());
+            System.out.println("Kvk nummer: " + Factuur.getFactuurs().get(i).getFactuurEigenschap().getKvkNummer());
             System.out.println("Datum: " + Factuur.getFactuurs().get(i).getDatum());
-            System.out.println("Factuur Nummer: " + Factuur.getFactuurs().get(i).getFactuurNummer());
-            System.out.println("BTW bedrag: " + Factuur.getFactuurs().get(i).getBtwBedrag()
+            System.out.println("Factuur Nummer: " + Factuur.getFactuurs().get(i).getFactuurEigenschap().getFactuurNummer());
+            System.out.println("BTW bedrag: " + Factuur.getFactuurs().get(i).getFactuurEigenschap().getBtwBedrag()
                     + "    " + "Uren gewerkt: " + Factuur.getFactuurs().get(i).getUrenWerken());
             System.out.println("Het totaal bedrag exclusief BTW is: "+ getBedrag());
         }
@@ -99,7 +87,8 @@ public class Factuur extends FactuurManager implements BerekenTarief, PrintFactu
                 int factuurNummer = sc.nextInt();
                 System.out.println("Hoe lang heeft u gewerkt?");
                 int urenWerken = sc.nextInt();
-                Factuur factuur1 = new Factuur(Klant.getKlanten().get(i), kvkNummer, btwBedrag, datum, factuurNummer, urenWerken);
+                FactuurEigenschap factuurEigenschap1 = new FactuurEigenschap(kvkNummer,btwBedrag,factuurNummer);
+                Factuur factuur1 = new Factuur(Klant.getKlanten().get(i), datum, urenWerken, factuurEigenschap1);
                 System.out.println("Klant: "+ Klant.getKlanten().get(i).getNaam()+ " "+ Klant.getKlanten().get(i).getTarief());
                 printEenFactuur();
                 FactuurManager factuurManager = new FactuurManager();
@@ -112,11 +101,11 @@ public class Factuur extends FactuurManager implements BerekenTarief, PrintFactu
 
     public void printEenFactuur(){
         for (int y = 0; y < Factuur.getFactuurs().size(); y++) {
-            System.out.println("kvk nummer: " + Factuur.getFactuurs().get(y).getKvkNummer());
+            System.out.println("kvk nummer: " + Factuur.getFactuurs().get(y).getFactuurEigenschap().getKvkNummer());
             System.out.println("Datum: " + Factuur.getFactuurs().get(y).getDatum());
-            System.out.println("Factuur Nummer: " + Factuur.getFactuurs().get(y).getFactuurNummer());
+            System.out.println("Factuur Nummer: " + Factuur.getFactuurs().get(y).getFactuurEigenschap().getFactuurNummer());
             System.out.println("------------------------------------------------------------");
-            System.out.println("BTW bedrag: " + Factuur.getFactuurs().get(y).getBtwBedrag());
+            System.out.println("BTW bedrag: " + Factuur.getFactuurs().get(y).getFactuurEigenschap().getBtwBedrag());
             System.out.println("Uren gewerkt: " + Factuur.getFactuurs().get(y).getUrenWerken());
             System.out.println("------------------------------------------------------------");
             System.out.println("Het totaal bedrag exclusief BTW is: "+ getBedrag());

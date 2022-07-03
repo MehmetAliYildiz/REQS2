@@ -9,7 +9,7 @@ public class Main {
         boolean nogEenKeer = true;
         Factuur factuur = new Factuur();
         KlantProject klantProject = new KlantProject();
-//        KlantWerk klantWerk = new KlantWerk();
+        KlantWerk klantWerk = new KlantWerk();
         do {
             try {
                 Scanner scanner = new Scanner(System.in);
@@ -22,7 +22,7 @@ public class Main {
                 System.out.println("Voer een commandnummer in");
                 int commandnummer = scanner.nextInt();
                 if (commandnummer == 1) {
-//                    klantWerk.alleKlanten();
+                    klantWerk.alleKlanten();
                     klantProject.alleKlanten();
                 } else if (commandnummer == 2) {
                     factuur.alleFacturen();
@@ -31,7 +31,7 @@ public class Main {
                     scanner.nextLine();
                     String keuze = scanner.nextLine();
                     if (keuze.equals("Werk")) {
-//                        klantWerk.makeKlant();
+                        klantWerk.makeKlant();
                     }
                     else if (keuze.equals("Project")) {
                         klantProject.makeKlant();

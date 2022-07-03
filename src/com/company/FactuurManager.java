@@ -8,7 +8,6 @@ public class FactuurManager {
 
     public FactuurManager() {
     }
-
         void setfactuurs(){
         notifyfactuur = new ArrayList<FactuurObserver>();
         notifyfactuur.add(new Factuur());
